@@ -37,6 +37,10 @@ public class MyFrame extends JFrame implements KeyListener{
 			drawing.attack1();
 			System.out.println("Normal Attack");
 		}
+		else if(e.getKeyCode() == KeyEvent.VK_S)
+		{
+			drawing.spawnEnemy();
+		}
 	}
 
 	public void keyReleased(KeyEvent e){
@@ -49,7 +53,7 @@ public class MyFrame extends JFrame implements KeyListener{
 
 	public static void main(String args[]){
 		MyFrame gameFrame = new MyFrame();
-		gameFrame.setSize(600,300);
+		gameFrame.setSize(700,500);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true);
 		gameFrame.getContentPane().add(gameFrame.drawing);
