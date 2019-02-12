@@ -20,6 +20,35 @@ public class Draw extends JComponent{
 	// animation states
 	public int state = 0;
 
+/*ENEMY COMPONENTS
+	// randomizer
+	public Random randomizer;
+
+
+public int enemyCount;
+	Monster[] monsters = new Monster[10];
+
+	public Draw(){
+		randomizer = new Random();
+		spawnEnemy();
+		
+		try{
+			image = ImageIO.read(resource);
+			backgroundImage = ImageIO.read(getClass().getResource("background.jpg"));
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+
+		height = image.getHeight();
+		width = image.getWidth();
+
+		startGame();
+	}*/
+
+     
+     
+//ENEMENY COMPONENTS ^^^^^
 	public Draw(){
 		try{
 			image = ImageIO.read(resource);
@@ -28,7 +57,10 @@ public class Draw extends JComponent{
 		catch(IOException e){
 			e.printStackTrace();
 		}
+
+		
 	}
+
 
 	public void reloadImage(){
 		state++;
@@ -89,8 +121,41 @@ public class Draw extends JComponent{
 		});
 		thread1.start();
 	}
+	public void attackAnimation1(){
+		Thread thread2 = new Thread(new Runnable(){
+			public void run(){
+				for(int ctr = 0; ctr < 5; ctr++){
+					try {
+						if(ctr==4){
+							resource = getClass().getResource("atake0.png");
+						}
+						else{
+							resource = getClass().getResource("atake"+ctr+".png");
+						}
+						
+						try{
+							image = ImageIO.read(resource);
+						}
+						catch(IOException e){
+							e.printStackTrace();
+						}
+				        repaint();
+				        Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		thread2.start();
+	}
 
-	public void attack(){
+      public void attack1()
+      {
+          attackAnimation1();
+      }
+	public void attack()
+	{
 		attackAnimation();
 	}
 
@@ -98,24 +163,28 @@ public class Draw extends JComponent{
 		y = y - 5;
 		reloadImage();
 		repaint();
+
 	}
 
 	public void moveDown(){
 		y = y + 5;
 		reloadImage();
 		repaint();
+
 	}
 
 	public void moveLeft(){
 		x = x - 5;
 		reloadImage();
 		repaint();
+	
 	}
 
 	public void moveRight(){
 		x = x + 5;
 		reloadImage();
 		repaint();
+
 	}
 	
 	public void paintComponent(Graphics g){

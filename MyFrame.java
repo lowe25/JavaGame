@@ -27,9 +27,15 @@ public class MyFrame extends JFrame implements KeyListener{
 			drawing.moveLeft();
 			System.out.println("Move Back: " + drawing.x + ", " + drawing.y);
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_SPACE){
+		else if(e.getKeyCode() == KeyEvent.VK_SPACE)
+		{
 			drawing.attack();
 			System.out.println("Transform Attack");
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_Q)
+		{
+			drawing.attack1();
+			System.out.println("Normal Attack");
 		}
 	}
 
