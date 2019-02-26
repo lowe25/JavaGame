@@ -16,10 +16,10 @@ public class Draw extends JComponent{
 
 	
 		// circle's position
-	public int x = 300;
+	public int x = 500;
 	public int y = 300;
-	public int height = 0;
-	public int width = 0;
+	public int height = 60;
+	public int width = 490;
 
 	// animation states
 	public int state = 0;
@@ -28,14 +28,7 @@ public class Draw extends JComponent{
 	// randomizer
 	public Random randomizer;
 
-	
 
-	
-
-//ENEMY 
-
-
-	
 public void startGame()
 {
 		Thread gameThread = new Thread(new Runnable(){
@@ -67,15 +60,17 @@ public void startGame()
 		spawnEnemy();
 		try{
 			image = ImageIO.read(resource);
-			backgroundImage = ImageIO.read(getClass().getResource("tree.jpg"));
+			backgroundImage = ImageIO.read(getClass().getResource("background.jpg"));
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
+
+		height = image.getHeight();
+		width =  image.getWidth();
+
+		startGame();
 	}
-
-
-
 	public void spawnEnemy()
 	{
 		if(enemyCount < 10)
@@ -162,10 +157,14 @@ public void startGame()
 		});
 		thread1.start();
 	}
-	public void attackAnimation1(){
-		Thread thread2 = new Thread(new Runnable(){
-			public void run(){
-				for(int ctr = 0; ctr < 5; ctr++){
+	public void attackAnimation1()
+	{
+		Thread thread2 = new Thread(new Runnable()
+		{
+			public void run()
+			{
+				for(int ctr = 0; ctr < 5; ctr++)
+				{
 					try {
 						if(ctr==4){
 							resource = getClass().getResource("atake0.png");
@@ -226,36 +225,44 @@ public void startGame()
 		checkCollision();
 	}
 	//ENEMY SHITS
-public void checkCollision(){
+public void checkCollision()
+{
 		int xChecker = x + width;
 		int yChecker = y;
 
-		for(int x=0; x<monsters.length; x++){
+		for(int x=0; x<monsters.length; x++)
+		{
 			boolean collideX = false;
 			boolean collideY = false;
 
-			if(monsters[x]!=null){
+			if(monsters[x]!=null)
+			{
 				monsters[x].contact = false;
 
-				if(yChecker > monsters[x].yPos){
+				if(yChecker > monsters[x].yPos)
+				{
 					if(yChecker-monsters[x].yPos < monsters[x].height){
 						collideY = true;
+						System.out.println("collideY");
 					}
 				}
 				else{
 					if(monsters[x].yPos - yChecker < monsters[x].height){
 						collideY = true;
+						System.out.println("collideY");
 					}
 				}
 
 				if(xChecker > monsters[x].xPos){
 					if(xChecker-monsters[x].xPos < monsters[x].width){
 						collideX = true;
+						System.out.println("collideX");
 					}
 				}
 				else{
 					if(monsters[x].xPos - xChecker < 5){
 						collideX = true;
+						System.out.println("collideX");
 					}
 				}
 			}
@@ -267,7 +274,8 @@ public void checkCollision(){
 		}
 	}
 	//ENEMY SHITS LAST
-        public void paintComponent(Graphics g){
+        public void paintComponent(Graphics g)
+        {
 		super.paintComponent(g);
 		g.setColor(Color.YELLOW);
 		g.drawImage(backgroundImage, 0, 0, this);
@@ -285,4 +293,14 @@ public void checkCollision(){
 			}	
 		}
 	}
+	public void checkDeath(){
+		for(int c = 0; c < monsters.length; c++){
+			if(monsters[c]!=null){
+				if(!monsters[c].alive){
+					monsters[c] = null;
+				}
+			}			
+		}
+	}
+
 }
