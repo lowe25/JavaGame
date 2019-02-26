@@ -12,7 +12,7 @@ public class Draw extends JComponent{
 
 	private BufferedImage image;
 	private BufferedImage backgroundImage;
-	public URL resource = getClass().getResource("knight-frame1.png");
+	public URL resource = getClass().getResource("idle01.png");
 
 	
 		// circle's position
@@ -62,7 +62,8 @@ public void startGame()
 			image = ImageIO.read(resource);
 			backgroundImage = ImageIO.read(getClass().getResource("background.jpg"));
 		}
-		catch(IOException e){
+		catch(IOException e)
+		{
 			e.printStackTrace();
 		}
 
@@ -79,27 +80,46 @@ public void startGame()
 			enemyCount++;
 		}
 	}
+
+	//RUN
 	public void reloadImage(){
 		state++;
 
-		if(state == 0){
-			resource = getClass().getResource("knight-frame1.png");
+		if(state == 0)
+		{
+			resource = getClass().getResource("run1.png");
 		}
-		else if(state == 1){
-			resource = getClass().getResource("knight-frame2.png");
+		else if(state == 1)
+		{
+			resource = getClass().getResource("run2.png");
 		}
-		else if(state == 2){
-			resource = getClass().getResource("knight-frame3.png");
+		else if(state == 2)
+		{
+			resource = getClass().getResource("run3.png");
 		}
-		else if(state == 3){
-			resource = getClass().getResource("knight-frame4.png");
+		else if(state == 3)
+		{
+			resource = getClass().getResource("run4.png");
 		}
-		else if(state == 4){
-			resource = getClass().getResource("knight-frame5.png");
+		else if(state == 4)
+		{
+			resource = getClass().getResource("run5.png");
 		}
-		else if(state == 5){
-			resource = getClass().getResource("knight-frame6.png");
+		else if(state == 5)
+		{
+			resource = getClass().getResource("run6.png");
+			
+		}
+		else if(state == 6)
+		{
+			resource = getClass().getResource("run7.png");
+			
+		}
+		else if(state == 7)
+		{
+			resource = getClass().getResource("run8.png");
 			state = 0;
+			
 		}
 		try
 		{
@@ -109,18 +129,20 @@ public void startGame()
 			e.printStackTrace();
 		}
 	}
+
+	//ATTACK
 	public void attackAnimation()
 	{
 		Thread thread1 = new Thread(new Runnable()
 		{
 			public void run()
 			{
-				for(int ctr = 0; ctr < 5; ctr++)
+				for(int ctr = 0; ctr < 6; ctr++)
 				{
 					try {
-						if(ctr==4)
+						if(ctr==5)
 						{
-							resource = getClass().getResource("knight-frame20.png");
+							resource = getClass().getResource("run1.png");
 						}
 						else
 						{
@@ -157,44 +179,6 @@ public void startGame()
 		});
 		thread1.start();
 	}
-	public void attackAnimation1()
-	{
-		Thread thread2 = new Thread(new Runnable()
-		{
-			public void run()
-			{
-				for(int ctr = 0; ctr < 5; ctr++)
-				{
-					try {
-						if(ctr==4){
-							resource = getClass().getResource("atake0.png");
-						}
-						else{
-							resource = getClass().getResource("atake"+ctr+".png");
-						}
-						
-						try{
-							image = ImageIO.read(resource);
-						}
-						catch(IOException e){
-							e.printStackTrace();
-						}
-				        repaint();
-				        Thread.sleep(100);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				//ENEMY SHITS
-				
-			}
-		});
-		thread2.start();
-	}
-      public void attack1()
-      {
-          attackAnimation1();
-      }
 	public void attack()
 	{
 		attackAnimation();

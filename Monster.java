@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,14 +7,15 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.swing.JComponent;
 
-public class Monster{
-	
+public class Monster
+{
 	public int xPos = 150;
 	public int yPos = 300;
 	public int width = 0;
 	public int height = 0;
 	public int life = 20;
 	public boolean idle = true;
+	public boolean die = true;
 	public boolean alive = true;
 	public boolean contact = false;
 
@@ -52,9 +54,9 @@ public class Monster{
 		Thread monThread = new Thread(new Runnable(){
 			public void run(){
 				while(idle){
-					for(int ctr = 0; ctr < 5; ctr++){
+					for(int ctr = 0; ctr < 4; ctr++){
 						try {
-							if(ctr==4){
+							if(ctr==3){
 								resource = getClass().getResource("idle0.png");
 							}
 							else{
@@ -100,24 +102,32 @@ public class Monster{
 		}
 	}
 
-	public void die(Draw compPass){
-		idle = false;
+	public void die(Draw compPass)
+	{
+		die = false;
 		if(alive){
-			Thread monThread = new Thread(new Runnable(){
-				public void run(){
-					for(int ctr = 0; ctr < 4; ctr++){
-						try {					
-							resource = getClass().getResource("idledie"+ctr+".png");
+			Thread monThread = new Thread(new Runnable()
+			{
+				public void run()
+				{
+					for(int ctr = 0; ctr < 4; ctr++)
+					{
+						try 
+						{					
+							resource = getClass().getResource("die1"+ctr+".png");
 							
-							try{
+							try
+							{
 								image = ImageIO.read(resource);
 							}
-							catch(IOException e){
+							catch(IOException e)
+							{
 								e.printStackTrace();
 							}
 					        compPass.repaint();
 					        Thread.sleep(100);
-						} catch (InterruptedException e) {
+						} catch (InterruptedException e) 
+						{
 							e.printStackTrace();
 						}
 					}
@@ -126,5 +136,6 @@ public class Monster{
 			monThread.start();
 		}
 		alive = false;
+		compPass.checkDeath();
 	}
 }

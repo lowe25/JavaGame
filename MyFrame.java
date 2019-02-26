@@ -30,12 +30,7 @@ public class MyFrame extends JFrame implements KeyListener{
 		else if(e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
 			drawing.attack();
-			System.out.println("Transform Attack");
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_Q)
-		{
-			drawing.attack1();
-			System.out.println("Normal Attack");
+			System.out.println("Attack");
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_S)
 		{
@@ -54,6 +49,7 @@ public class MyFrame extends JFrame implements KeyListener{
 	public static void main(String args[]){
 		MyFrame gameFrame = new MyFrame();
 		gameFrame.setSize(700,500);
+
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true);
 		gameFrame.getContentPane().add(gameFrame.drawing);
