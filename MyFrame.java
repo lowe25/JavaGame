@@ -51,10 +51,11 @@ public class MyFrame extends JFrame implements KeyListener{
 
 	public static void main(String args[]){
 		MyFrame gameFrame = new MyFrame();
-		gameFrame.setSize(700,500);
+		gameFrame.setSize(900,500);
         gameFrame.setResizable(false);
+        gameFrame.setLocationRelativeTo(null);
+        gameFrame.setVisible(true);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gameFrame.setVisible(true);
 		gameFrame.getContentPane().add(gameFrame.drawing);
 		gameFrame.addKeyListener(gameFrame);
 		System.out.println("practical programming");

@@ -10,12 +10,13 @@ import java.util.Random;
  
 public class Draw extends JComponent
 {
+	//TILEMAP
 	private BufferedImage image;
 	private BufferedImage backgroundImage;
-	private static final int walking = 1;
 
-	private static final int CLEAR = 0;
-	private static final int BLOCKED = 1;
+
+
+
 	public URL resource = getClass().getResource("idle01.png");
 	// Char position
 	public int x = 50;
@@ -25,7 +26,6 @@ public class Draw extends JComponent
 	public int width = 990;
 
 
-public static final int TILE_SIZE = 20;
 	// animation states
 	public int state = 0;
 
@@ -93,46 +93,42 @@ public void startGame()
 		if(state == 0)
 		{
 			resource = getClass().getResource("run1.png");
-			width = 40;
+	
 		}
 		else if(state == 1)
 		{
 			resource = getClass().getResource("run2.png");
-			width = 40;
+		
 		}
 		else if(state == 2)
 		{
 			resource = getClass().getResource("run3.png");
-			width = 40;
+		
 		}
 		else if(state == 3)
 		{
 			resource = getClass().getResource("run4.png");
-			width = 40;
+			
 		}
 		else if(state == 4)
 		{
 			resource = getClass().getResource("run5.png");
-			width = 40;
+		
 		}
 		else if(state == 5)
 		{
 			resource = getClass().getResource("run6.png");
-			width = 40;
 			
 		}
 		else if(state == 6)
 		{
 			resource = getClass().getResource("run7.png");
-			width = 40;
 			
 		}
 		else if(state == 7)
 		{
 			resource = getClass().getResource("run8.png");
-			width = 40;
-			state = 0;
-			
+			state = 0;	
 		}
 		try
 		{
