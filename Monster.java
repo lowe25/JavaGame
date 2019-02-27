@@ -24,6 +24,7 @@ public class Monster
 	public Monster(Draw comp){
 		try{
 			image = ImageIO.read(resource);
+			
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -38,6 +39,7 @@ public class Monster
 
 		try{
 			image = ImageIO.read(resource);
+		
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -55,7 +57,7 @@ public class Monster
 				while(idle){
 					for(int ctr = 0; ctr < 4; ctr++){
 						try {
-							if(ctr==3){
+							if(ctr==4){
 								resource = getClass().getResource("idle0.png");
 							}
 							else{
@@ -64,6 +66,7 @@ public class Monster
 							
 							try{
 								image = ImageIO.read(resource);
+							
 							}
 							catch(IOException e){
 								e.printStackTrace();
@@ -113,11 +116,11 @@ public class Monster
 					{
 						try 
 						{					
-							resource = getClass().getResource("die1"+ctr+".png");
-							
+							resource = getClass().getResource("die0"+ctr+".png");	
 							try
 							{
 								image = ImageIO.read(resource);
+								
 							}
 							catch(IOException e)
 							{
@@ -125,7 +128,8 @@ public class Monster
 							}
 					        compPass.repaint();
 					        Thread.sleep(100);
-						} catch (InterruptedException e) 
+						}
+						 catch (InterruptedException e) 
 						{
 							e.printStackTrace();
 						}

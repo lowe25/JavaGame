@@ -7,21 +7,25 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Random;
-
-public class Draw extends JComponent{
-
+ 
+public class Draw extends JComponent
+{
 	private BufferedImage image;
 	private BufferedImage backgroundImage;
-	public URL resource = getClass().getResource("idle01.png");
+	private static final int walking = 1;
 
-	
-		// Char position
+	private static final int CLEAR = 0;
+	private static final int BLOCKED = 1;
+	public URL resource = getClass().getResource("idle01.png");
+	// Char position
 	public int x = 50;
 	//Horizontal
 	public int y = 415;
-	public int height = 60;
-	public int width = 490;
+	public int height = 1000;
+	public int width = 990;
 
+
+public static final int TILE_SIZE = 20;
 	// animation states
 	public int state = 0;
 
@@ -89,36 +93,44 @@ public void startGame()
 		if(state == 0)
 		{
 			resource = getClass().getResource("run1.png");
+			width = 40;
 		}
 		else if(state == 1)
 		{
 			resource = getClass().getResource("run2.png");
+			width = 40;
 		}
 		else if(state == 2)
 		{
 			resource = getClass().getResource("run3.png");
+			width = 40;
 		}
 		else if(state == 3)
 		{
 			resource = getClass().getResource("run4.png");
+			width = 40;
 		}
 		else if(state == 4)
 		{
 			resource = getClass().getResource("run5.png");
+			width = 40;
 		}
 		else if(state == 5)
 		{
 			resource = getClass().getResource("run6.png");
+			width = 40;
 			
 		}
 		else if(state == 6)
 		{
 			resource = getClass().getResource("run7.png");
+			width = 40;
 			
 		}
 		else if(state == 7)
 		{
 			resource = getClass().getResource("run8.png");
+			width = 40;
 			state = 0;
 			
 		}
@@ -129,6 +141,12 @@ public void startGame()
 		catch(IOException e){
 			e.printStackTrace();
 		}
+	}
+
+	//JUMP
+	public void jumpAnimation()
+	{
+
 	}
 
 	//ATTACK
@@ -147,6 +165,7 @@ public void startGame()
 						}
 						else
 						{
+							
 							resource = getClass().getResource("attack"+ctr+".png");
 						}			
 						try
@@ -157,6 +176,7 @@ public void startGame()
 						{
 							e.printStackTrace();
 						}
+					
 				        repaint();
 				        Thread.sleep(100);
 					}
@@ -171,7 +191,7 @@ public void startGame()
 					{
 						if(monsters[x].contact)
 						{
-							monsters[x].life = monsters[x].life - 100;
+							monsters[x].life = monsters[x].life - 10;
 						}
 					}
 				}
@@ -185,25 +205,25 @@ public void startGame()
 	}
 //CHAR SPEED
 	public void moveUp(){
-		y = y - 10;
+		y = y - 5;
 		reloadImage();
 		repaint();
 		checkCollision();
 	}
 	public void moveDown(){
-		y = y + 10;
+		y = y + 5;
 		reloadImage();
 		repaint();
 		checkCollision();
 	}
 	public void moveLeft(){
-		x = x - 10;
+		x = x - 5;
 		reloadImage();
 		repaint();
 		checkCollision();
 	}
 	public void moveRight(){
-		x = x + 10;
+		x = x + 5;
 		reloadImage();
 		repaint();
 		checkCollision();

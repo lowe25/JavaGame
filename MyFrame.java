@@ -8,14 +8,17 @@ public class MyFrame extends JFrame implements KeyListener{
 
 	public MyFrame(){
 		this.drawing = new Draw();
+
 	}
 
-	public void keyPressed(KeyEvent e){
+	public void keyPressed(KeyEvent e)
+	{
 		if(e.getKeyCode() == KeyEvent.VK_UP){
 			drawing.moveUp();
 			System.out.println("Float: " + drawing.x + ", " + drawing.y);
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+	    else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
 			drawing.moveRight();
 			System.out.println("Move Forward: " + drawing.x + ", " + drawing.y);
 		}
@@ -49,7 +52,7 @@ public class MyFrame extends JFrame implements KeyListener{
 	public static void main(String args[]){
 		MyFrame gameFrame = new MyFrame();
 		gameFrame.setSize(700,500);
-
+        gameFrame.setResizable(false);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true);
 		gameFrame.getContentPane().add(gameFrame.drawing);
