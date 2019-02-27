@@ -15,9 +15,10 @@ public class Draw extends JComponent{
 	public URL resource = getClass().getResource("idle01.png");
 
 	
-		// circle's position
-	public int x = 500;
-	public int y = 300;
+		// Char position
+	public int x = 50;
+	//Horizontal
+	public int y = 415;
 	public int height = 60;
 	public int width = 490;
 
@@ -60,7 +61,7 @@ public void startGame()
 		spawnEnemy();
 		try{
 			image = ImageIO.read(resource);
-			backgroundImage = ImageIO.read(getClass().getResource("background.jpg"));
+			backgroundImage = ImageIO.read(getClass().getResource("bulkhead-wallsx3.png"));
 		}
 		catch(IOException e)
 		{
@@ -147,8 +148,7 @@ public void startGame()
 						else
 						{
 							resource = getClass().getResource("attack"+ctr+".png");
-						}
-						
+						}			
 						try
 						{
 							image = ImageIO.read(resource);
@@ -171,7 +171,7 @@ public void startGame()
 					{
 						if(monsters[x].contact)
 						{
-							monsters[x].life = monsters[x].life - 10;
+							monsters[x].life = monsters[x].life - 100;
 						}
 					}
 				}
@@ -183,27 +183,27 @@ public void startGame()
 	{
 		attackAnimation();
 	}
-
+//CHAR SPEED
 	public void moveUp(){
-		y = y - 5;
+		y = y - 10;
 		reloadImage();
 		repaint();
 		checkCollision();
 	}
 	public void moveDown(){
-		y = y + 5;
+		y = y + 10;
 		reloadImage();
 		repaint();
 		checkCollision();
 	}
 	public void moveLeft(){
-		x = x - 5;
+		x = x - 10;
 		reloadImage();
 		repaint();
 		checkCollision();
 	}
 	public void moveRight(){
-		x = x + 5;
+		x = x + 10;
 		reloadImage();
 		repaint();
 		checkCollision();
