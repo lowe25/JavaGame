@@ -6,6 +6,7 @@ public class MyFrame extends JFrame implements KeyListener{
 
 	Draw drawing;
 
+
 	public MyFrame(){
 		this.drawing = new Draw();
 
@@ -55,9 +56,10 @@ public class MyFrame extends JFrame implements KeyListener{
         gameFrame.setResizable(false);
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setVisible(true);
+        gameFrame.setTitle("Zombie");
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.getContentPane().add(gameFrame.drawing);
 		gameFrame.addKeyListener(gameFrame);
-		System.out.println("practical programming");
+		System.out.println("Java 2D Start");
 	}
 }

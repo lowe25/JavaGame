@@ -10,29 +10,28 @@ import java.util.Random;
  
 public class Draw extends JComponent
 {
-	//TILEMAP
-	private BufferedImage image;
+	private BufferedImage playerimage;
 	private BufferedImage backgroundImage;
-
-
-
-
 	public URL resource = getClass().getResource("idle01.png");
+
 	// Char position
-	public int x = 50;
-	//Horizontal
-	public int y = 415;
-	public int height = 1000;
-	public int width = 990;
+	//X = Horizontal
+	//Y = Vertical
+	public int x = 5;
+	public int y = 420;
+	public int height;
+	public int width;
+    public int state = 0;
+
+//CHAR
 
 
-	// animation states
-	public int state = 0;
+ 
+
 
 //ENEMY COMPONENTS
 	// randomizer
 	public Random randomizer;
-
 
 public void startGame()
 {
@@ -64,7 +63,7 @@ public void startGame()
 		randomizer = new Random();
 		spawnEnemy();
 		try{
-			image = ImageIO.read(resource);
+			playerimage = ImageIO.read(resource);
 			backgroundImage = ImageIO.read(getClass().getResource("bulkhead-wallsx3.png"));
 		}
 		catch(IOException e)
@@ -72,8 +71,8 @@ public void startGame()
 			e.printStackTrace();
 		}
 
-		height = image.getHeight();
-		width =  image.getWidth();
+		height = playerimage.getHeight();
+		width =  playerimage.getWidth();
 
 		startGame();
 	}
@@ -93,46 +92,62 @@ public void startGame()
 		if(state == 0)
 		{
 			resource = getClass().getResource("run1.png");
+			x = 5;
+			y = 0;
 	
 		}
 		else if(state == 1)
 		{
 			resource = getClass().getResource("run2.png");
+			x = 5;
+			y = 0;
 		
 		}
 		else if(state == 2)
 		{
 			resource = getClass().getResource("run3.png");
+			x = 5;
+			y = 0;
 		
 		}
 		else if(state == 3)
 		{
 			resource = getClass().getResource("run4.png");
+			x = 5;
+			y = 0;
 			
 		}
 		else if(state == 4)
 		{
 			resource = getClass().getResource("run5.png");
+			x = 5;
+			y = 0;
 		
 		}
 		else if(state == 5)
 		{
 			resource = getClass().getResource("run6.png");
+			x = 5;
+			y = 0;
 			
 		}
 		else if(state == 6)
 		{
 			resource = getClass().getResource("run7.png");
+			x = 5;
+			y = 0;
 			
 		}
 		else if(state == 7)
 		{
 			resource = getClass().getResource("run8.png");
+			x = 5;
+			y = 0;
 			state = 0;	
 		}
 		try
 		{
-			image = ImageIO.read(resource);
+			playerimage = ImageIO.read(resource);
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -166,7 +181,7 @@ public void startGame()
 						}			
 						try
 						{
-							image = ImageIO.read(resource);
+							playerimage = ImageIO.read(resource);
 						}
 						catch(IOException e)
 						{
@@ -279,7 +294,7 @@ public void checkCollision()
 		super.paintComponent(g);
 		g.setColor(Color.YELLOW);
 		g.drawImage(backgroundImage, 0, 0, this);
-		g.drawImage(image, x, y, this);
+		g.drawImage(playerimage, x, y, this);
 		//ENEMY
 		for(int c = 0; c < monsters.length; c++)
 		{
