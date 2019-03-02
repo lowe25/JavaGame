@@ -92,57 +92,57 @@ public void startGame()
 		if(state == 0)
 		{
 			resource = getClass().getResource("run1.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 	
 		}
 		else if(state == 1)
 		{
 			resource = getClass().getResource("run2.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 		
 		}
 		else if(state == 2)
 		{
 			resource = getClass().getResource("run3.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 		
 		}
 		else if(state == 3)
 		{
 			resource = getClass().getResource("run4.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 			
 		}
 		else if(state == 4)
 		{
 			resource = getClass().getResource("run5.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 		
 		}
 		else if(state == 5)
 		{
 			resource = getClass().getResource("run6.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 			
 		}
 		else if(state == 6)
 		{
 			resource = getClass().getResource("run7.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 			
 		}
 		else if(state == 7)
 		{
 			resource = getClass().getResource("run8.png");
-			x = 5;
-			y = 0;
+			
+			y = 420;
 			state = 0;	
 		}
 		try
