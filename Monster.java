@@ -19,7 +19,7 @@ public class Monster
 	public boolean contact = false;
 
 	public BufferedImage image;
-	public URL resource = getClass().getResource("idle0.png");
+	public URL resource = getClass().getResource("idleMonster/idle0.png");
 
 	public Monster(Draw comp){
 		try{
@@ -58,10 +58,10 @@ public class Monster
 					for(int ctr = 0; ctr < 4; ctr++){
 						try {
 							if(ctr==4){
-								resource = getClass().getResource("idle0.png");
+								resource = getClass().getResource("idleMonster/idle0.png");
 							}
 							else{
-								resource = getClass().getResource("idle"+ctr+".png");
+								resource = getClass().getResource("idleMonster/idle"+ctr+".png");
 							}
 							
 							try{

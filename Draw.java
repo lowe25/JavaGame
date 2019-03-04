@@ -11,19 +11,22 @@ import java.util.Random;
 public class Draw extends JComponent
 {
 	private BufferedImage playerimage;
+	private BufferedImage runnerimage;
 	private BufferedImage backgroundImage;
-	public URL resource = getClass().getResource("idle01.png");
+	public URL resource = getClass().getResource("IdleImages/idle01.png");
+	public URL resource1 = getClass().getResource("runningImages/run1.png");
 
 	// Char position
 	//X = Horizontal
 	//Y = Vertical
+	public boolean run = true;
 	public int x = 5;
 	public int y = 420;
 	public int height;
 	public int width;
     public int state = 0;
 
-//CHAR
+
 
 
  
@@ -58,12 +61,13 @@ public void startGame()
 	public int enemyCount;
 	Monster[] monsters = new Monster[10];
 
-	public Draw()
+	public Draw(Draw comp)
 	{
 		randomizer = new Random();
 		spawnEnemy();
 		try{
 			playerimage = ImageIO.read(resource);
+			runnerimage = ImageIO.read(resource);
 			backgroundImage = ImageIO.read(getClass().getResource("bulkhead-wallsx3.png"));
 		}
 		catch(IOException e)
@@ -71,6 +75,8 @@ public void startGame()
 			e.printStackTrace();
 		}
 
+        height = runnerimage.getHeight();
+        width = runnerimage.getWidth();
 		height = playerimage.getHeight();
 		width =  playerimage.getWidth();
 
@@ -86,7 +92,7 @@ public void startGame()
 	}
 
 	//RUN
-	public void reloadImage(){
+	/*public void reloadImage(){
 		state++;
 
 		if(state == 0)
@@ -152,14 +158,52 @@ public void startGame()
 		catch(IOException e){
 			e.printStackTrace();
 		}
-	}
+	}*/
 
-	//JUMP
-	public void jumpAnimation()
+//WALKING
+	public void reloadImage(Draw compPass)
 	{
-
+		Thread thread3 = new Thread(new Runnable()
+		{
+			public void walk()
+			{
+				while(run)
+				{
+				for(int ctr = 0; ctr < 7; ctr++)
+				{	
+				try
+				{					
+					if(ctr==5)
+						{
+							resource = getClass().getResource("runningImages/run1.png");
+						}
+						else
+						{
+							
+							resource = getClass().getResource("runningImages/run"+ctr+".png");
+						}			
+						try
+						{
+							playerimage = ImageIO.read(resource);
+						}
+						catch(IOException e)
+						{
+							e.printStackTrace();
+						}
+					
+				        comPass.repaint();
+				        Thread.sleep(100);
+					 }catch (InterruptedException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+				
+				}
+			}
+		});
+		thread3.start();
 	}
-
 	//ATTACK
 	public void attackAnimation()
 	{
@@ -172,12 +216,12 @@ public void startGame()
 					try {
 						if(ctr==5)
 						{
-							resource = getClass().getResource("run1.png");
+							resource = getClass().getResource("runningImages/run1.png");
 						}
 						else
 						{
 							
-							resource = getClass().getResource("attack"+ctr+".png");
+							resource = getClass().getResource("attackImages/attack"+ctr+".png");
 						}			
 						try
 						{
@@ -210,6 +254,56 @@ public void startGame()
 		});
 		thread1.start();
 	}
+
+	//JUMP ANIMATION
+public void jumpAnimation()
+	{
+		Thread thread2 = new Thread(new Runnable()
+		{
+			public void run()
+			{
+				for(int ctr = 1; ctr < 5; ctr++)
+				{
+					try {
+						if(ctr==5)
+						{
+							resource = getClass().getResource("jump01.png");
+						}
+						else
+						{
+							
+							resource = getClass().getResource("jump"+ctr+".png");
+						}			
+						try
+						{
+							playerimage = ImageIO.read(resource);
+						}
+						catch(IOException e)
+						{
+							e.printStackTrace();
+						}
+					
+				        repaint();
+				        Thread.sleep(100);
+					}
+					 catch (InterruptedException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		thread2.start();
+	}
+//=========================================================================================	
+	public void walk()
+	{
+		reloadImage();
+	}
+     public void  jump()
+     {
+     	jumpAnimation();
+     }
 	public void attack()
 	{
 		attackAnimation();
