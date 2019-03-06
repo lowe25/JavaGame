@@ -11,7 +11,7 @@ import java.util.Random;
 public class Draw extends JComponent
 {
 	private BufferedImage playerimage;
-	private BufferedImage runnerimage;
+	private BufferedImage runnerimage1;
 	private BufferedImage backgroundImage;
 	public URL resource = getClass().getResource("IdleImages/idle01.png");
 	public URL resource1 = getClass().getResource("runningImages/run1.png");
@@ -19,6 +19,7 @@ public class Draw extends JComponent
 	// Char position
 	//X = Horizontal
 	//Y = Vertical
+	public boolean walk = true;
 	public boolean run = true;
 	public int x = 5;
 	public int y = 420;
@@ -26,17 +27,35 @@ public class Draw extends JComponent
 	public int width;
     public int state = 0;
 
-
-
-
- 
-
-
-//ENEMY COMPONENTS
 	// randomizer
 	public Random randomizer;
 
-public void startGame()
+//ENEMENY COMPONENTS ^^^^^
+	public int enemyCount;
+	Monster[] monsters = new Monster[10];
+
+	public Draw(Draw comp)
+	{
+		randomizer = new Random();
+		spawnEnemy();
+		try{
+			playerimage = ImageIO.read(resource);
+			runnerimage1 = ImageIO.read(resource1);
+			backgroundImage = ImageIO.read(getClass().getResource("bulkhead-wallsx3.png"));
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+
+        height = runnerimage1.getHeight();
+        width = runnerimage1.getWidth();
+		height = playerimage.getHeight();
+		width =  playerimage.getWidth();
+
+		startGame();
+	}
+	public void startGame()
 {
 		Thread gameThread = new Thread(new Runnable(){
 			public void run(){
@@ -56,31 +75,6 @@ public void startGame()
 			}
 		});
 		gameThread.start();
-	}
-//ENEMENY COMPONENTS ^^^^^
-	public int enemyCount;
-	Monster[] monsters = new Monster[10];
-
-	public Draw(Draw comp)
-	{
-		randomizer = new Random();
-		spawnEnemy();
-		try{
-			playerimage = ImageIO.read(resource);
-			runnerimage = ImageIO.read(resource);
-			backgroundImage = ImageIO.read(getClass().getResource("bulkhead-wallsx3.png"));
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-
-        height = runnerimage.getHeight();
-        width = runnerimage.getWidth();
-		height = playerimage.getHeight();
-		width =  playerimage.getWidth();
-
-		startGame();
 	}
 	public void spawnEnemy()
 	{
@@ -159,51 +153,6 @@ public void startGame()
 			e.printStackTrace();
 		}
 	}*/
-
-//WALKING
-	public void reloadImage(Draw compPass)
-	{
-		Thread thread3 = new Thread(new Runnable()
-		{
-			public void walk()
-			{
-				while(run)
-				{
-				for(int ctr = 0; ctr < 7; ctr++)
-				{	
-				try
-				{					
-					if(ctr==5)
-						{
-							resource = getClass().getResource("runningImages/run1.png");
-						}
-						else
-						{
-							
-							resource = getClass().getResource("runningImages/run"+ctr+".png");
-						}			
-						try
-						{
-							playerimage = ImageIO.read(resource);
-						}
-						catch(IOException e)
-						{
-							e.printStackTrace();
-						}
-					
-				        comPass.repaint();
-				        Thread.sleep(100);
-					 }catch (InterruptedException e) 
-					{
-						e.printStackTrace();
-					}
-				}
-				
-				}
-			}
-		});
-		thread3.start();
-	}
 	//ATTACK
 	public void attackAnimation()
 	{
@@ -216,7 +165,7 @@ public void startGame()
 					try {
 						if(ctr==5)
 						{
-							resource = getClass().getResource("runningImages/run1.png");
+							resource1 = getClass().getResource("runningImages/run1.png");
 						}
 						else
 						{
@@ -226,6 +175,7 @@ public void startGame()
 						try
 						{
 							playerimage = ImageIO.read(resource);
+							runnerimage1 = ImageIO.read(resource1);
 						}
 						catch(IOException e)
 						{
@@ -254,56 +204,51 @@ public void startGame()
 		});
 		thread1.start();
 	}
-
-	//JUMP ANIMATION
-public void jumpAnimation()
+	//WALKING
+	public void walkAnimation()
 	{
 		Thread thread2 = new Thread(new Runnable()
 		{
 			public void run()
-			{
-				for(int ctr = 1; ctr < 5; ctr++)
-				{
-					try {
-						if(ctr==5)
-						{
-							resource = getClass().getResource("jump01.png");
-						}
-						else
-						{
-							
-							resource = getClass().getResource("jump"+ctr+".png");
-						}			
-						try
-						{
-							playerimage = ImageIO.read(resource);
-						}
-						catch(IOException e)
-						{
-							e.printStackTrace();
-						}
-					
-				        repaint();
-				        Thread.sleep(100);
-					}
-					 catch (InterruptedException e) 
-					{
-						e.printStackTrace();
-					}
-				}
-			}
+            {
+              for(int ctr = 0; ctr < 7; ctr++)
+              {
+              	try
+              	{
+              		if(ctr==6)
+              		{
+              			resource1 = getClass().getResource("runningImages/run1.png");
+              		}
+              		else
+              		{
+              			resource1 = getClass().getResource("runningImages/run1.png");
+              		}
+              		try
+              		{
+              			playerimage = ImageIO.read(resource);
+              			runnerimage1 = ImageIO.read(resource1);
+              		}
+              		catch(IOException e)
+              		{
+              			e.printStackTrace();
+              		}
+              		repaint();
+              		Thread.sleep(100);
+              	}
+              	catch (InterruptedException e)
+              	{
+              		e.printStackTrace();
+              	}
+             }
+          }
 		});
 		thread2.start();
 	}
 //=========================================================================================	
-	public void walk()
+	public void walker()
 	{
-		reloadImage();
+		walkAnimation();
 	}
-     public void  jump()
-     {
-     	jumpAnimation();
-     }
 	public void attack()
 	{
 		attackAnimation();
@@ -311,25 +256,25 @@ public void jumpAnimation()
 //CHAR SPEED
 	public void moveUp(){
 		y = y - 5;
-		reloadImage();
+		walkAnimation();
 		repaint();
 		checkCollision();
 	}
 	public void moveDown(){
 		y = y + 5;
-		reloadImage();
+		walkAnimation();
 		repaint();
 		checkCollision();
 	}
 	public void moveLeft(){
 		x = x - 5;
-		reloadImage();
+		walkAnimation();
 		repaint();
 		checkCollision();
 	}
 	public void moveRight(){
 		x = x + 5;
-		reloadImage();
+		walkAnimation();
 		repaint();
 		checkCollision();
 	}

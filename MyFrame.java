@@ -2,30 +2,19 @@ import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MyFrame extends JFrame implements KeyListener{
-
+public class MyFrame extends JFrame implements KeyListener
+{
 	Draw drawing;
      
-    /*private Homepage home;
-
-     private enum STATE{
-     	MENU,
-     	GAME
-     };
-     private STATE State = STATE.MENU;*/
-
-
-	public MyFrame(){
+	public MyFrame()
+	{
 		this.drawing = new Draw();
-		//home = new Homepage();
-
 	}
-
 	public void keyPressed(KeyEvent e)
 	{
-		/*if(State == STATE.GAME){
-			*/
-		if(e.getKeyCode() == KeyEvent.VK_UP){
+
+		if(e.getKeyCode() == KeyEvent.VK_UP)
+		{
 			drawing.moveUp();
 			System.out.println("Jump: " + drawing.x + ", " + drawing.y);
 		}
@@ -51,19 +40,17 @@ public class MyFrame extends JFrame implements KeyListener{
 		{
 			drawing.spawnEnemy();
 		}
-	//}
 }
-
-	public void keyReleased(KeyEvent e){
+	public void keyReleased(KeyEvent e)
+	{
 
 	}
-
-	public void keyTyped(KeyEvent e){
+	public void keyTyped(KeyEvent e)
+	{
 		
 	}
-
-	public static void main(String args[]){
-		
+	public static void main(String args[])
+	{
 		MyFrame gameFrame = new MyFrame();
 		gameFrame.setSize(900,500);
         gameFrame.setResizable(false);
