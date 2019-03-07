@@ -34,7 +34,7 @@ public class Draw extends JComponent
 	public int enemyCount;
 	Monster[] monsters = new Monster[10];
 
-	public Draw(Draw comp)
+	public Draw()
 	{
 		randomizer = new Random();
 		spawnEnemy();
@@ -84,75 +84,6 @@ public class Draw extends JComponent
 			enemyCount++;
 		}
 	}
-
-	//RUN
-	/*public void reloadImage(){
-		state++;
-
-		if(state == 0)
-		{
-			resource = getClass().getResource("run1.png");
-			
-			y = 420;
-	
-		}
-		else if(state == 1)
-		{
-			resource = getClass().getResource("run2.png");
-			
-			y = 420;
-		
-		}
-		else if(state == 2)
-		{
-			resource = getClass().getResource("run3.png");
-			
-			y = 420;
-		
-		}
-		else if(state == 3)
-		{
-			resource = getClass().getResource("run4.png");
-			
-			y = 420;
-			
-		}
-		else if(state == 4)
-		{
-			resource = getClass().getResource("run5.png");
-			
-			y = 420;
-		
-		}
-		else if(state == 5)
-		{
-			resource = getClass().getResource("run6.png");
-			
-			y = 420;
-			
-		}
-		else if(state == 6)
-		{
-			resource = getClass().getResource("run7.png");
-			
-			y = 420;
-			
-		}
-		else if(state == 7)
-		{
-			resource = getClass().getResource("run8.png");
-			
-			y = 420;
-			state = 0;	
-		}
-		try
-		{
-			playerimage = ImageIO.read(resource);
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-	}*/
 	//ATTACK
 	public void attackAnimation()
 	{
@@ -165,11 +96,10 @@ public class Draw extends JComponent
 					try {
 						if(ctr==5)
 						{
-							resource1 = getClass().getResource("runningImages/run1.png");
+							resource1 = getClass().getResource("IdleImages/idle01.png");
 						}
 						else
 						{
-							
 							resource = getClass().getResource("attackImages/attack"+ctr+".png");
 						}			
 						try
@@ -180,8 +110,7 @@ public class Draw extends JComponent
 						catch(IOException e)
 						{
 							e.printStackTrace();
-						}
-					
+						}	
 				        repaint();
 				        Thread.sleep(100);
 					}
@@ -211,17 +140,19 @@ public class Draw extends JComponent
 		{
 			public void run()
             {
-              for(int ctr = 0; ctr < 7; ctr++)
+              for(int ctr = 0; ctr < 8; ctr++)
               {
               	try
               	{
-              		if(ctr==6)
+              		if(ctr==7)
               		{
               			resource1 = getClass().getResource("runningImages/run1.png");
+              			y = 420;
               		}
               		else
               		{
-              			resource1 = getClass().getResource("runningImages/run1.png");
+              			resource1 = getClass().getResource("IdleImages/idle01.png");
+              			y = 420;
               		}
               		try
               		{
