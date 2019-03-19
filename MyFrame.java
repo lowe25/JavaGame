@@ -13,20 +13,20 @@ public class MyFrame extends JFrame implements KeyListener
 	public void keyPressed(KeyEvent e)
 	{
 
-		if(e.getKeyCode() == KeyEvent.VK_UP)
+		/*if(e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			drawing.moveUp();
 			System.out.println("Jump: " + drawing.x + ", " + drawing.y);
-		}
-	    else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		}*/
+	     if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			drawing.moveRight();
 			System.out.println("Move Forward: " + drawing.x + ", " + drawing.y);
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+		/*else if(e.getKeyCode() == KeyEvent.VK_DOWN){
 			drawing.moveDown();
 			System.out.println("Slide: " + drawing.x + ", " + drawing.y);
-		}
+		}*/
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT){
 			drawing.moveLeft();
 			System.out.println("Move Back: " + drawing.x + ", " + drawing.y);

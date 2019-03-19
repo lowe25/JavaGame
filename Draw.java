@@ -11,10 +11,15 @@ import java.util.Random;
 public class Draw extends JComponent
 {
 	private BufferedImage playerimage;
-	private BufferedImage runnerimage1;
+
+	private BufferedImage runnerimage;
+	public URL resource1 = getClass().getResource("runningImages/run1.png");
+
+	private BufferedImage attackimage;
+	public URL resource2 = getClass().getResource("attackImages/attack0.png");
+
 	private BufferedImage backgroundImage;
 	public URL resource = getClass().getResource("IdleImages/idle01.png");
-	public URL resource1 = getClass().getResource("runningImages/run1.png");
 
 	// Char position
 	//X = Horizontal
@@ -40,16 +45,20 @@ public class Draw extends JComponent
 		spawnEnemy();
 		try{
 			playerimage = ImageIO.read(resource);
-			runnerimage1 = ImageIO.read(resource1);
+			runnerimage = ImageIO.read(resource1);
+			attackimage = ImageIO.read(resource2);
 			backgroundImage = ImageIO.read(getClass().getResource("bulkhead-wallsx3.png"));
 		}
 		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
+        height = attackimage.getHeight();
+        width = attackimage.getWidth();
 
-        height = runnerimage1.getHeight();
-        width = runnerimage1.getWidth();
+        height = runnerimage.getHeight();
+        width = runnerimage.getWidth();
+
 		height = playerimage.getHeight();
 		width =  playerimage.getWidth();
 
@@ -96,16 +105,15 @@ public class Draw extends JComponent
 					try {
 						if(ctr==5)
 						{
-							resource1 = getClass().getResource("IdleImages/idle01.png");
+							resource2 = getClass().getResource("attackImages/attack0.png");
 						}
 						else
 						{
-							resource = getClass().getResource("attackImages/attack"+ctr+".png");
+							resource2 = getClass().getResource("attackImages/attack"+ctr+".png");
 						}			
 						try
 						{
-							playerimage = ImageIO.read(resource);
-							runnerimage1 = ImageIO.read(resource1);
+							attackimage = ImageIO.read(resource2);
 						}
 						catch(IOException e)
 						{
@@ -144,20 +152,21 @@ public class Draw extends JComponent
               {
               	try
               	{
-              		if(ctr==7)
+              		if(ctr==8)
               		{
               			resource1 = getClass().getResource("runningImages/run1.png");
               			y = 420;
+              			ctr = 0;
               		}
               		else
               		{
-              			resource1 = getClass().getResource("IdleImages/idle01.png");
+              			resource1 = getClass().getResource("runningImages/run1.png");
               			y = 420;
+              			ctr =0;
               		}
               		try
               		{
-              			playerimage = ImageIO.read(resource);
-              			runnerimage1 = ImageIO.read(resource1);
+              			runnerimage = ImageIO.read(resource1);
               		}
               		catch(IOException e)
               		{
@@ -169,7 +178,7 @@ public class Draw extends JComponent
               	catch (InterruptedException e)
               	{
               		e.printStackTrace();
-              	}
+              	}              	
              }
           }
 		});

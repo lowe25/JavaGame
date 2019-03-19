@@ -8,10 +8,10 @@ import javax.swing.JComponent;
 
 public class Monster
 {
-	public int xPos = 150;
-	public int yPos = 300;
-	public int width = 0;
-	public int height = 0;
+	public int xPos = 880;
+	public int yPos = 420;
+	public int width;
+	public int height;
 	public int life = 20;
 	public boolean idle = true;
 	public boolean die = true;
