@@ -19,38 +19,32 @@ public class Monster
 	public boolean contact = false;
 
 	public BufferedImage image;
-	public URL resource = getClass().getResource("idleMonster/idle0.png");
+	public URL resource = getClass().getResource("Zombiewalk/walk0.png");
 
 	public Monster(Draw comp){
 		try{
-			image = ImageIO.read(resource);
-			
+			image = ImageIO.read(resource);		
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
-
 		animate(comp);
 	}
-
 	public Monster(int xPass, int yPass, Draw comp){
 		xPos = xPass;
 		yPos = yPass;
 
 		try{
-			image = ImageIO.read(resource);
-		
+			image = ImageIO.read(resource);	
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
-
 		height = image.getHeight();
 		width = image.getWidth();
 
 		animate(comp);
 	}
-
 	public void animate(Draw compPass){
 		Thread monThread = new Thread(new Runnable(){
 			public void run(){
@@ -58,10 +52,10 @@ public class Monster
 					for(int ctr = 0; ctr < 4; ctr++){
 						try {
 							if(ctr==4){
-								resource = getClass().getResource("idleMonster/idle0.png");
+								resource = getClass().getResource("Zombiewalk/walk0.png");
 							}
 							else{
-								resource = getClass().getResource("idleMonster/idle"+ctr+".png");
+								resource = getClass().getResource("Zombiewalk/walk"+ctr+".png");
 							}
 							
 							try{
@@ -71,14 +65,12 @@ public class Monster
 							catch(IOException e){
 								e.printStackTrace();
 							}
-
 					        compPass.repaint();
 					        Thread.sleep(100);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
 					}
-
 					if(life<=0){
 						die(compPass);
 					}
@@ -87,7 +79,6 @@ public class Monster
 		});
 		monThread.start();
 	}
-
 	public void moveTo(int toX, int toY){
 		if(xPos<toX){
 			xPos++;
@@ -103,7 +94,6 @@ public class Monster
 			yPos--;
 		}
 	}
-
 	public void die(Draw compPass)
 	{
 		die = false;
@@ -112,7 +102,7 @@ public class Monster
 			{
 				public void run()
 				{
-					for(int ctr = 0; ctr < 4; ctr++)
+					for(int ctr = 0; ctr < 6; ctr++)
 					{
 						try 
 						{					
